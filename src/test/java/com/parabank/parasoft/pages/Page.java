@@ -18,7 +18,7 @@ public abstract class Page {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(General.WAIT_TIME));
     }
-    public abstract String getPageTitle(By locator);
+    public abstract String getPageTitle();
     public abstract WebElement getWebElement(By locator);
     public abstract List<WebElement > getWebElements(By locator);
     public abstract void waitForElement(By locator);
