@@ -4,16 +4,52 @@ import com.parabank.parasoft.pages.BasePage;
 import com.parabank.parasoft.pages.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 
 public class BaseTest {
     WebDriver driver;
     Page page;
+     Properties properties;
+    protected BaseTest(){
+        try {
+        properties = new Properties();
+        String filePath=System.getProperty("user.dir") + "/src/test/resources/config.properties";
+            FileInputStream inputStrem = new FileInputStream(filePath);
+            properties.load(inputStrem);
+        } catch (FileNotFoundException e){
+            throw new RuntimeException();
+
+        }catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     @BeforeMethod
     public void setUpBrowser() {
-        driver=new ChromeDriver();
-        driver.get("https://parabank.parasoft.com/");
+        String browserName = properties.getProperty("browserName");
+        switch (browserName) {
+            case "chrome":
+                driver = new ChromeDriver();
+                break;
+            case "firefox": driver=new FirefoxDriver();
+                break;
+            case "firefoxHeadless":
+                FirefoxOptions options = new FirefoxOptions();
+                options.addArguments("--headless");
+                driver=new FirefoxDriver(options);
+                break;
+        }
+
+
+        driver.get(properties.getProperty("url"));
         driver.manage().window().maximize();
 
         page=new BasePage(driver);
@@ -22,4 +58,11 @@ public class BaseTest {
     public void tearDownBrowser() {
         driver.quit();
     }
+    public  String getUserName(){
+        return properties.getProperty("username");
+    }
+    public  String getPassword(){
+        return properties.getProperty("password");
+    }
 }
+

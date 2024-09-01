@@ -15,11 +15,6 @@ public class loginTest extends BaseTest {
                 .clickLoginLinkButton();
         Assert.assertTrue(loginPage.hasError());
 
-
-//        LoginPage loginPage2 = page.getInstance(LoginPage.class)
-//                .fillUserName("sdasdadss")
-//                .clickLoginLinkButton();
-//        Assert.assertTrue(loginPage2.hasError());
     }
     @Test
     public void loginWithWrongPassword() {
