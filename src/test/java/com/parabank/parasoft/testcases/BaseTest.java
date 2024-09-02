@@ -4,6 +4,7 @@ import com.parabank.parasoft.pages.BasePage;
 import com.parabank.parasoft.pages.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -42,10 +43,17 @@ public class BaseTest {
             case "firefox": driver=new FirefoxDriver();
                 break;
             case "firefoxHeadless":
-                FirefoxOptions options = new FirefoxOptions();
-                options.addArguments("--headless");
-                driver=new FirefoxDriver(options);
+                FirefoxOptions foxOptions = new FirefoxOptions();
+                foxOptions.addArguments("--headless");
+                driver=new FirefoxDriver(foxOptions);
                 break;
+            case "chromeHeadless":
+                ChromeOptions chromeoptions = new ChromeOptions();
+                chromeoptions.addArguments("--headless");
+                driver=new ChromeDriver(chromeoptions);
+                break;
+            default:
+                System.out.println("please provide right browser name");
         }
 
 
@@ -55,9 +63,9 @@ public class BaseTest {
         page=new BasePage(driver);
     }
     @AfterMethod
-    public void tearDownBrowser() {
-        driver.quit();
-    }
+//    public void tearDownBrowser() {
+//        driver.quit();
+//    }
     public  String getUserName(){
         return properties.getProperty("username");
     }
