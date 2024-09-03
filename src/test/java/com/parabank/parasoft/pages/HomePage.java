@@ -9,6 +9,7 @@ public class HomePage extends BasePage{
         super(driver);
     }
     public boolean hasLogoutLink(){
+
         return getWebElements(By.cssSelector("a[href='logout.htm']")).size()>0;
     }
     public OpenNewAccountPage clickOpenAccountLink(){

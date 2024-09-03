@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class RegisterTest extends BaseTest{
     @Test
-    public void registrationShouldFillWithData() throws InterruptedException {
+    public void registrationShouldFillWithData()  {
         LoginPage loginPage = page.getInstance(LoginPage.class);
 
         RegisterPage registerPage = loginPage
@@ -19,7 +19,7 @@ public class RegisterTest extends BaseTest{
 
     }
     @Test
-    public void registrationShouldSucceed() throws InterruptedException {
+    public void registrationShouldSucceed()  {
         LoginPage loginPage = page.getInstance(LoginPage.class);
         RegisterPage registerPage = loginPage
                 .clickRegistrationLink()
@@ -37,7 +37,7 @@ public class RegisterTest extends BaseTest{
                 .clickRegisterLink();
     }
     @Test
-    public void registrationShouldSucceed2() throws InterruptedException {
+    public void registrationShouldSucceed2() {
         String userName = LoremIpsum.getInstance().getName();
         LoginPage loginPage = page.getInstance(LoginPage.class);
         RegisterPage registerPage = loginPage
@@ -58,7 +58,7 @@ public class RegisterTest extends BaseTest{
         Assert.assertTrue(homePage.hasLogoutLink());
     }
     @Test(enabled = false)
-    public void registrationShouldSucceed3() throws InterruptedException {
+    public void registrationShouldSucceed3()  {
         String userName = LoremIpsum.getInstance().getName();
 
         HomePage homePage = page.getInstance(LoginPage.class)

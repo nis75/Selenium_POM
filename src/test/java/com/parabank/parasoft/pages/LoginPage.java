@@ -30,13 +30,11 @@ public class LoginPage extends BasePage {
             return getInstance(CustomerLookupPage.class);
 
     }
-    public RegisterPage clickRegistrationLink() throws InterruptedException {
-            Thread.sleep(3000);
+    public RegisterPage clickRegistrationLink()  {
         getWebElement(By.cssSelector("a[href='register.htm']")).click();
         return getInstance(RegisterPage.class);
     }
     public boolean hasError(){
-
             return getWebElements(By.ByClassName.className("error")).size()>0;
     }
     public HomePage doLogin(String userName, String password) {
@@ -45,7 +43,7 @@ public class LoginPage extends BasePage {
                     .clickLoginButton();
     }
 
-    public HomePage doLoginViaRegistration() throws InterruptedException {
+    public HomePage doLoginViaRegistration()  {
         String userName = LoremIpsum.getInstance().getName();
         return getInstance(LoginPage.class)
                 .clickRegistrationLink()

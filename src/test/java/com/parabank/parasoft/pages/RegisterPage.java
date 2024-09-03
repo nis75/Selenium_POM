@@ -1,5 +1,6 @@
 package com.parabank.parasoft.pages;
 
+import com.parabank.parasoft.util.General;
 import com.thedeanda.lorem.LoremIpsum;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -53,14 +54,17 @@ public class RegisterPage extends BasePage{
         return this;
     }
     public HomePage clickRegisterBtn() {
+        General.customSleep();
         getWebElement(By.cssSelector("input[value='Register']")).click();
         return getInstance(HomePage.class);
     }
     public RegisterPage clickRegisterLink(){
+        General.customSleep();
         getWebElement(By.cssSelector("input[value='Register']")).click();
         return  this;
     }
     public boolean hasSSNRequiredFieldError(){
+
         return  getWebElements(By.id("customer.ssn.errors")).size() > 0;
     }
     public boolean hasFirstNameRequiredFieldError(){
