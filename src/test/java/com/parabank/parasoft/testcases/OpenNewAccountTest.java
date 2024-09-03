@@ -8,12 +8,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class OpenNewAccountTest extends BaseTest {
-    @Test(enabled = false)
-    public void openAccountShouldSucceed() {
+    @Test
+    public void openAccountShouldSucceed() throws InterruptedException {
         LoginPage loginPage = page.getInstance(LoginPage.class);
         Assert.assertEquals(loginPage.getPageTitle(), General.LOGIN_TITTLE);
-        HomePage homePage = loginPage
-                .doLogin(getUserName(), getPassword());
+        HomePage homePage = loginPage.doLoginViaRegistration();
+                //.doLogin(getUserName(), getPassword());
         Assert.assertTrue(homePage.hasLogoutLink());
 
         OpenNewAccountPage newAccountOpenPage = homePage
